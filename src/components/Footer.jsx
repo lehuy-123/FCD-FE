@@ -45,16 +45,21 @@ const Footer = () => {
         <div className="footer-contact fade-in" style={{ animationDelay: '0.3s' }}>
           <h4>Liên hệ với chúng tôi</h4>
           <ul>
-            <li><MapPin size={18} className="contact-icon" /> 123 Architecture Blvd, NYC</li>
-            <li><Phone size={18} className="contact-icon" /> +1 (555) 123-4567</li>
-            <li><Mail size={18} className="contact-icon" /> info@facades.com</li>
+            <li>
+              <strong>CÔNG TY TNHH THƯƠNG MẠI GIẢI PHÁP FACADE</strong>
+            </li>
+            <li><MapPin size={16} className="contact-icon" /> Số 115C Nguyễn Ảnh Thủ, Tổ 63, Khu phố 6, P. Trung Mỹ Tây, Q.12, Tp.HCM</li>
+            <li><Phone size={16} className="contact-icon" /> Điện thoại: (+84) 283.636.2370 &nbsp; Fax: (+84) 283.636.2371</li>
+            <li><Mail size={16} className="contact-icon" /> Email: gaothui@facades.vn</li>
+            <li><strong>Mã số thuế:</strong> 0313990323</li>
+           
           </ul>
         </div>
       </div>
 
       <div className="footer-bottom">
         <div className="container footer-bottom-content">
-          <p>&copy; {new Date().getFullYear()} FACADES Construction. Mọi quyền được bảo lưu.</p>
+          <p>&copy; {new Date().getFullYear()} CÔNG TY TNHH THƯƠNG MẠI GIẢI PHÁP FACADE. Mọi quyền được bảo lưu.</p>
           <div className="footer-legal">
             <Link to="/">Chính sách bảo mật</Link>
             <Link to="/">Điều khoản dịch vụ</Link>

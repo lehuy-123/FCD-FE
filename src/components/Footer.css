@@ -151,3 +151,80 @@
     text-align: center;
   }
 }
+
+/* Tighter footer on medium screens */
+@media (max-width: 900px) {
+  .professional-footer {
+    padding-top: 3rem;
+    margin-top: 2rem;
+  }
+
+  .footer-grid {
+    gap: 1.5rem;
+    padding-bottom: 2rem;
+  }
+
+  .footer-brand .footer-logo {
+    font-size: 1.4rem;
+  }
+
+  .social-links a {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+/* Compact footer for small mobile devices */
+@media (max-width: 480px) {
+  .professional-footer {
+    padding-top: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .footer-brand .footer-logo {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-brand p {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+
+  .footer-links-group h4,
+  .footer-contact h4 {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-links-group a,
+  .footer-legal a {
+    font-size: 0.95rem;
+  }
+
+  .social-links {
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .footer-links-group ul,
+  .footer-contact ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .footer-bottom {
+    padding: 0.75rem 0;
+  }
+
+  .footer-bottom-content p {
+    font-size: 0.9rem;
+  }
+}

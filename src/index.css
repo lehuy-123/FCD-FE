@@ -53,6 +53,18 @@ button:active, .nav-link:active {
   padding: 0 2rem;
 }
 
+/* Ensure main content isn't hidden behind the fixed navbar */
+main {
+  padding-top: 84px;
+}
+
+/* Responsive images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
 /* Glassmorphism Utility */
 .glass {
   background: var(--bg-card);
@@ -121,4 +133,14 @@ button:active, .nav-link:active {
     gap: 1rem;
     text-align: center;
   }
+}
+
+@media (max-width: 900px) {
+  .container { padding: 0 1rem; }
+  main { padding-top: 72px; }
+}
+
+@media (max-width: 480px) {
+  .container { padding: 0 0.75rem; }
+  main { padding-top: 64px; }
 }

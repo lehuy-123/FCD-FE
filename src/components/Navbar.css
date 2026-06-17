@@ -129,3 +129,49 @@
 .login-btn:hover {
   background: var(--accent);
 }
+
+/* Mobile / Responsive */
+.mobile-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  color: var(--text-main);
+  padding: 0.5rem;
+  margin-left: 0.5rem;
+}
+
+@media (max-width: 900px) {
+  .nav-links {
+    display: none;
+  }
+
+  .mobile-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-links.open {
+    display: flex;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    background: rgba(255,255,255,0.98);
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem 2rem;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  }
+
+  .nav-links.open .nav-link,
+  .nav-links.open .cart-btn,
+  .nav-links.open .user-menu-item,
+  .nav-links.open .login-btn,
+  .nav-links.open .admin-btn {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 0.75rem 0;
+  }
+}

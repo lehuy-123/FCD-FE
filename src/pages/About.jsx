@@ -7,45 +7,40 @@ const About = () => {
     <div className="about">
       <header className="about-header">
         <div className="container">
-          <h1>Về <span className="highlight">FACADES</span></h1>
-          <p>Xuất sắc trong xây dựng và cung cấp vật liệu từ năm 2005.</p>
+          <h1>Giới thiệu <span className="highlight">FACADES SOLUTIONS</span></h1>
+          <p>FAÇADE SOLUTIONS CO., LTD — cung cấp giải pháp nhôm kính và mặt dựng, kết hợp công nghệ châu Âu và đội ngũ kỹ thuật chuyên nghiệp.</p>
         </div>
       </header>
 
       <section className="about-content container">
         <div className="about-text fade-in">
-          <h2>Câu chuyện của chúng tôi</h2>
+          <h2>Giới thiệu chung</h2>
           <p>
-            FACADES Construction được thành lập với tầm nhìn rõ ràng: xác định lại các tiêu chuẩn của kiến trúc hiện đại và tính toàn vẹn của kết cấu. 
-            Trong những thập kỷ qua, chúng tôi đã phát triển từ một nhà thầu địa phương nhỏ thành một công ty xây dựng hàng đầu và là nhà cung cấp vật liệu cao cấp.
+            FAÇADE SOLUTIONS được thành lập nhằm đáp ứng nhu cầu phát triển ngành nhôm, kính và công nghệ mặt dựng ở Việt Nam. Chúng tôi cung cấp dịch vụ thi công mặt dựng, cung cấp vật liệu nhôm, kính, tấm composite và giải pháp kỹ thuật theo tiêu chuẩn quốc tế.
           </p>
           <p>
-            Chúng tôi tin rằng mọi cấu trúc nên là minh chứng cho độ bền, tính thẩm mỹ và tính bền vững. Đội ngũ kỹ sư, 
-            kiến trúc sư và thợ xây dựng đẳng cấp thế giới của chúng tôi làm việc không mệt mỏi để đưa các dự án tầm nhìn vào cuộc sống.
+            Với dây chuyền sản xuất hiện đại, công nghệ chuyển giao và đội ngũ kỹ sư giàu kinh nghiệm, FAÇADE SOLUTIONS cam kết mang đến sản phẩm toàn diện, đảm bảo tính thực dụng, chất lượng, độ bền và tính thẩm mỹ cho mọi công trình.
           </p>
         </div>
         <div className="about-image fade-in">
-          <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2000&auto=format&fit=crop" alt="Construction Team" />
+          <img src="https://facades.vn/thumb/1366x560/1/upload/hinhanh/010313310.jpg?1781686904106" alt="FACADES Solutions" />
         </div>
       </section>
 
       <section className="core-values container">
-        <h2 className="text-center" style={{marginBottom: "3rem", textAlign: "center", fontSize: "2.5rem"}}>Giá trị cốt lõi</h2>
+        <h2 className="text-center" style={{marginBottom: "2rem", textAlign: "center", fontSize: "2rem"}}>Năng lực & Dịch vụ</h2>
         <div className="values-grid">
           <div className="value-card glass fade-in">
-            <ShieldCheck size={40} className="value-icon" />
-            <h3>Tin cậy</h3>
-            <p>Chúng tôi thực hiện đúng lời hứa, đảm bảo mọi dự án được hoàn thành đúng hạn và đạt tiêu chuẩn.</p>
+            <h3>Thi công Mặt dựng</h3>
+            <p>Thi công hệ vách kính, hệ khung nhôm, tấm ốp composite theo tiêu chuẩn kỹ thuật chặt chẽ.</p>
           </div>
-          <div className="value-card glass fade-in" style={{ animationDelay: '0.2s' }}>
-            <Award size={40} className="value-icon" />
-            <h3>Chất lượng</h3>
-            <p>Chỉ sử dụng những vật liệu tốt nhất, chúng tôi xây dựng những công trình trường tồn với thời gian.</p>
+          <div className="value-card glass fade-in" style={{ animationDelay: '0.15s' }}>
+            <h3>Cung cấp Vật liệu</h3>
+            <p>Cung cấp nhôm định hình, kính kết cấu, tấm composite và phụ kiện đồng bộ chất lượng cao.</p>
           </div>
-          <div className="value-card glass fade-in" style={{ animationDelay: '0.4s' }}>
-            <Users size={40} className="value-icon" />
-            <h3>Hợp tác</h3>
-            <p>Chúng tôi làm việc chặt chẽ với khách hàng, kiến trúc sư và cộng đồng để đạt được các mục tiêu chung.</p>
+          <div className="value-card glass fade-in" style={{ animationDelay: '0.3s' }}>
+            <h3>Tư vấn Kỹ thuật</h3>
+            <p>Tư vấn thiết kế, giải pháp thi công và kiểm định chất lượng nhằm đảm bảo hiệu quả và an toàn công trình.</p>
           </div>
         </div>
       </section>

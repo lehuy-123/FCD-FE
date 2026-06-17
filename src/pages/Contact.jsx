@@ -14,70 +14,90 @@ const Contact = () => {
         <div className="contact-info glass fade-in">
           <h2>Thông tin Liên hệ</h2>
           <p className="info-desc">Liên hệ với đội ngũ của chúng tôi để được giải đáp, báo giá hoặc hỗ trợ.</p>
-          
+
           <div className="info-item">
             <div className="info-icon"><MapPin size={24} /></div>
             <div>
-              <h3>Trụ sở chính</h3>
-              <p>123 Đại lộ Kiến trúc, Suite 500<br/>New York, NY 10001</p>
+              <h3>CÔNG TY TNHH THƯƠNG MẠI GIẢI PHÁP FACADE</h3>
+              <p>(FACADE SOLUTIONS TRADING Co., Ltd)</p>
             </div>
           </div>
-          
+
+          <div className="info-item">
+            <div className="info-icon"><MapPin size={24} /></div>
+            <div>
+              <h3>Địa chỉ</h3>
+              <p>Số 115C Nguyễn Ảnh Thủ, Tổ 63, Khu phố 6, P. Trung Mỹ Tây, Q.12, Tp.HCM</p>
+            </div>
+          </div>
+
           <div className="info-item">
             <div className="info-icon"><Phone size={24} /></div>
             <div>
-              <h3>Điện thoại</h3>
-              <p>+1 (555) 123-4567<br/>+1 (555) 987-6543</p>
+              <h3>Điện thoại / Fax</h3>
+              <p>Điện thoại: (+84) 283.636.2370<br/>Fax: (+84) 283.636.2371</p>
             </div>
           </div>
-          
+
           <div className="info-item">
             <div className="info-icon"><Mail size={24} /></div>
             <div>
               <h3>Email</h3>
-              <p>info@facades.com<br/>support@facades.com</p>
+              <p>info@facades.vn</p>
             </div>
           </div>
-          
+
           <div className="info-item">
             <div className="info-icon"><Clock size={24} /></div>
             <div>
-              <h3>Giờ làm việc</h3>
-              <p>Thứ 2 - Thứ 6: 8:00 AM - 6:00 PM<br/>Thứ 7 - CN: Nghỉ</p>
+              <h3>Mã số thuế</h3>
+              <p>0313990323</p>
+            </div>
+          </div>
+
+          <div className="info-item">
+            <div className="info-icon"><MapPin size={24} /></div>
+            <div>
+              <h3>Tài khoản ngân hàng</h3>
+              <p>Số tài khoản: 060134420653 tại Ngân hàng Sacombank – CN Quận 12</p>
             </div>
           </div>
         </div>
 
         <form className="contact-form glass fade-in" style={{ animationDelay: '0.2s' }}>
           <h2>Gửi tin nhắn</h2>
-          
-          <div className="form-group row">
-            <div className="input-group">
-              <label>Tên</label>
-              <input type="text" placeholder="Văn A" />
-            </div>
-            <div className="input-group">
-              <label>Họ</label>
-              <input type="text" placeholder="Nguyễn" />
-            </div>
-          </div>
-          
+
           <div className="form-group">
-            <label>Địa chỉ Email</label>
-            <input type="email" placeholder="nguyenvana@example.com" />
+            <label>Họ và tên</label>
+            <input type="text" placeholder="Họ và tên" />
           </div>
-          
+
           <div className="form-group">
-            <label>Chủ đề</label>
-            <input type="text" placeholder="Yêu cầu dự án" />
+            <label>Địa chỉ</label>
+            <input type="text" placeholder="Địa chỉ của bạn" />
           </div>
-          
+
           <div className="form-group">
-            <label>Tin nhắn</label>
-            <textarea placeholder="Hãy cho chúng tôi biết về dự án của bạn..."></textarea>
+            <label>Điện thoại</label>
+            <input type="tel" placeholder="Số điện thoại" />
           </div>
-          
-          <button type="button" className="primary-btn submit-btn">Gửi tin nhắn</button>
+
+          <div className="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="email@ví dụ.com" />
+          </div>
+
+          <div className="form-group">
+            <label>Tiêu đề</label>
+            <input type="text" placeholder="Tiêu đề" />
+          </div>
+
+          <div className="form-group">
+            <label>Nội dung</label>
+            <textarea placeholder="Nội dung tin nhắn..."></textarea>
+          </div>
+
+          <button type="button" className="primary-btn submit-btn">GỬI</button>
         </form>
       </div>
     </div>

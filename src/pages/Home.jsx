@@ -12,8 +12,7 @@ const Home = () => {
         <div className="container hero-content fade-in">
           <h1>Xây dựng <span className="highlight">Tương lai</span> với Kính và Nhôm</h1>
           <p>
-            Dịch vụ xây dựng cao cấp và kỹ thuật mặt dựng chất lượng cao 
-            được cung cấp với sự chính xác và xuất sắc.
+            Chúng tôi cung cấp giải pháp mặt dựng, nhôm kính và vật liệu ốp ngoại thất với công nghệ chuyển giao Châu Âu, đảm bảo chất lượng, độ bền và tính thẩm mỹ cho công trình.
           </p>
           <div className="hero-actions">
             <Link to="/contact" className="primary-btn">Bắt đầu Dự án <ArrowRight size={18} /></Link>
