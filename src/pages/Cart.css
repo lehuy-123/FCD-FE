@@ -1,0 +1,446 @@
+/* client/src/pages/Cart.css */
+.cart-page {
+  padding-top: 8rem;
+  padding-bottom: 5rem;
+}
+
+.cart-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.cart-header h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.cart-header p {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+}
+
+/* Empty Cart */
+.cart-empty {
+  padding-top: 10rem;
+  text-align: center;
+  color: var(--text-main);
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.cart-empty h2 {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.cart-empty p {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  max-width: 400px;
+}
+
+.mt-4 { 
+  margin-top: 1rem; 
+}
+
+/* Grid Layout */
+.cart-content {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 3rem;
+}
+
+.cart-items {
+  padding: 2.5rem;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+}
+
+.checkout-form {
+  padding: 2.5rem;
+  background: #f8fafc; /* very light slate for contrast */
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+}
+
+.cart-items h2, .checkout-form h2 {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  color: var(--text-main);
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 1rem;
+}
+
+.items-list {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Items */
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  transition: var(--transition);
+}
+
+.cart-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.cart-item:hover {
+  background: #f1f5f9;
+  border-radius: 12px;
+  padding: 1rem;
+  margin: -1rem -1rem 0.5rem -1rem;
+  border-bottom-color: transparent;
+}
+
+.cart-item img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.item-info {
+  flex: 1;
+}
+
+.item-info h3 {
+  font-size: 1.15rem;
+  margin-bottom: 0.4rem;
+  color: var(--text-main);
+  font-weight: 700;
+}
+
+.item-info p {
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.item-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.qty-input {
+  width: 65px;
+  padding: 0.6rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  background: white;
+  transition: var(--transition);
+}
+
+.qty-input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.delete-btn {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  padding: 0.6rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.delete-btn:hover {
+  background: #ef4444;
+  color: white;
+  transform: scale(1.05);
+}
+
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 2px dashed #cbd5e1;
+}
+
+.cart-total h3 {
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.total-price {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+/* Form Styles */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--text-main);
+}
+
+.form-icon {
+  color: var(--text-muted);
+}
+
+.form-input {
+  width: 100%;
+  padding: 1rem 1.2rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: var(--transition);
+  background: white;
+  color: var(--text-main);
+}
+
+.form-input::placeholder {
+  color: #94a3b8;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.08);
+}
+
+textarea.form-input {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 1.2rem;
+  font-size: 1.1rem;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  border-radius: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Status Banner */
+.status-banner {
+  background: #ecfdf5;
+  color: #065f46;
+  padding: 2.5rem;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 2.5rem;
+  border: 1px solid #10b981;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  box-shadow: 0 10px 30px rgba(16, 185, 129, 0.15);
+}
+.status-banner p {
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .cart-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .item-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+/* QR Payment Modal */
+.qr-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(12px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000; /* Higher than navbar */
+  padding: 1.5rem;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.qr-modal {
+  max-width: 480px;
+  width: 100%;
+  background: white;
+  border-radius: 28px;
+  padding: 2.5rem;
+  box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.3);
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  transform: translateY(0);
+  animation: modalPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes modalPop {
+  from { transform: translateY(30px) scale(0.95); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.qr-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 1rem;
+}
+
+.qr-header h2 {
+  font-size: 1.5rem;
+  margin: 0;
+  color: var(--text-main);
+  font-weight: 800;
+}
+
+.close-btn {
+  background: var(--accent);
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.close-btn:hover {
+  color: #ef4444;
+  transform: rotate(90deg);
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.qr-body {
+  text-align: center;
+}
+
+.qr-body p {
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.qr-image-container {
+  background: white;
+  padding: 1rem;
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+  margin-bottom: 2rem;
+  display: inline-block;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  position: relative;
+}
+
+.qr-image-container img {
+  max-width: 220px;
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+
+.qr-details {
+  background: #f8fafc;
+  padding: 1.5rem;
+  border-radius: 18px;
+  text-align: left;
+  border: 1px solid var(--border-color);
+  margin-bottom: 2rem;
+}
+
+.qr-details p {
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--text-main);
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(0,0,0,0.03);
+  padding-bottom: 0.5rem;
+}
+
+.qr-details p:last-child {
+  margin-bottom: 0;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.qr-details strong {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.qr-footer {
+   border-top: 1px dashed var(--border-color);
+   padding-top: 1.5rem;
+}
+
+.qr-footer .note {
+  font-size: 0.8rem;
+  color: #64748b;
+  font-style: italic;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.confirm-btn {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 14px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+

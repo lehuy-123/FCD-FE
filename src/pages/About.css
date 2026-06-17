@@ -1,0 +1,87 @@
+.about {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.about-header {
+  background-color: var(--accent);
+  padding: 4rem 0;
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.about-header h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.about-header p {
+  color: var(--text-muted);
+  font-size: 1.2rem;
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  margin-bottom: 6rem;
+}
+
+.about-text h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-main);
+}
+
+.about-text p {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.about-image img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  object-fit: cover;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.value-card {
+  padding: 2.5rem;
+  text-align: center;
+  transition: var(--transition);
+}
+
+.value-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  border-color: var(--primary);
+}
+
+.value-icon {
+  color: var(--primary);
+  margin-bottom: 1.5rem;
+}
+
+.value-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.value-card p {
+  color: var(--text-muted);
+}
+
+@media (max-width: 768px) {
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
