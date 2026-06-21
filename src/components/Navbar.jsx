@@ -11,12 +11,23 @@ const Navbar = () => {
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
   const [menuOpen, setMenuOpen] = useState(false);
 
+  // Fallback logo URL if the local file isn't uploaded yet
+  const logoUrl = "/fcd-logo.png"; // Expecting file in 'public' folder for simplicity or relative path
+
   return (
     <nav className="navbar glass">
       <div className="container nav-content">
         <Link to="/" className="logo">
-          <Layout className="logo-icon" />
-          <span>FACADES</span>
+          <img 
+            src={logoUrl} 
+            alt="F.C.D Logo" 
+            className="logo-img" 
+            onError={(e) => {
+              // Fallback to text if image fails to load
+              e.target.style.display = 'none';
+              e.target.insertAdjacentHTML('afterend', '<span className="logo-text">FACADES</span>');
+            }}
+          />
         </Link>
         <div className={`nav-links ${menuOpen ? 'open' : ''}`}>
           <Link to="/" className="nav-link" onClick={() => setMenuOpen(false)}>Trang chủ</Link>
