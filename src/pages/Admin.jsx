@@ -30,7 +30,9 @@ const Admin = () => {
     description: '',
     price: '',
     category: '',
-    image: ''
+    image: '',
+    images: '', // Comma separated string
+    specs: [{ key: 'Weight', value: '' }, { key: 'Dimensions', value: '' }]
   });
 
   // Form data for adding a project
@@ -51,7 +53,9 @@ const Admin = () => {
     description: '',
     price: '',
     category: '',
-    image: ''
+    image: '',
+    images: '',
+    specs: []
   });
 
   // Editing state for projects
@@ -65,6 +69,27 @@ const Admin = () => {
     completion_date: '',
     description: ''
   });
+
+  const handleSpecChange = (index, field, value, isEdit = false) => {
+    const setter = isEdit ? setEditFormData : setFormData;
+    const data = isEdit ? editFormData : formData;
+    const newSpecs = [...data.specs];
+    newSpecs[index][field] = value;
+    setter({ ...data, specs: newSpecs });
+  };
+
+  const addSpecField = (isEdit = false) => {
+    const setter = isEdit ? setEditFormData : setFormData;
+    const data = isEdit ? editFormData : formData;
+    setter({ ...data, specs: [...data.specs, { key: '', value: '' }] });
+  };
+
+  const removeSpecField = (index, isEdit = false) => {
+    const setter = isEdit ? setEditFormData : setFormData;
+    const data = isEdit ? editFormData : formData;
+    const newSpecs = data.specs.filter((_, i) => i !== index);
+    setter({ ...data, specs: newSpecs });
+  };
 
   // Block access to non-admins
   if (!user || user.role !== 'admin') {
@@ -118,13 +143,28 @@ const Admin = () => {
   const handleAddSubmit = async (e) => {
     e.preventDefault();
     setStatus('Đang thêm...');
+    
+    // Process specs array to object
+    const specsObj = {};
+    formData.specs.forEach(s => {
+      if (s.key && s.value) specsObj[s.key] = s.value;
+    });
+
+    // Process images
+    const imagesArray = formData.images ? formData.images.split(',').map(s => s.trim()) : [formData.image];
+
     try {
       const res = await API.post('/products', {
         ...formData,
-        price: Number(formData.price)
+        price: Number(formData.price),
+        images: imagesArray,
+        specs: specsObj
       });
       setStatus('Thêm sản phẩm thành công!');
-      setFormData({ name: '', description: '', price: '', category: '', image: '' });
+      setFormData({ 
+        name: '', description: '', price: '', category: '', image: '', images: '',
+        specs: [{ key: 'Weight', value: '' }, { key: 'Dimensions', value: '' }]
+      });
       setProducts(prev => [...prev, res.data]);
       setTimeout(() => setStatus(''), 3000);
     } catch (err) {
@@ -135,13 +175,18 @@ const Admin = () => {
 
   // Open edit modal for a product
   const startEditProduct = (product) => {
+    // Process specs object back to array for easier editing
+    const specsArray = product.specs ? Object.entries(product.specs).map(([key, value]) => ({ key, value })) : [];
+    
     setEditingProduct(product);
     setEditFormData({
       name: product.name,
       description: product.description,
       price: product.price,
       category: product.category,
-      image: product.image
+      image: product.image,
+      images: product.images ? product.images.join(', ') : product.image,
+      specs: specsArray.length > 0 ? specsArray : [{ key: '', value: '' }]
     });
   };
 
@@ -149,10 +194,22 @@ const Admin = () => {
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     setStatus('Đang lưu thay đổi...');
+    
+    // Process specs array to object
+    const specsObj = {};
+    editFormData.specs.forEach(s => {
+      if (s.key && s.value) specsObj[s.key] = s.value;
+    });
+
+    // Process images
+    const imagesArray = editFormData.images ? editFormData.images.split(',').map(s => s.trim()) : [editFormData.image];
+
     try {
       const res = await API.put(`/products/${editingProduct.id}`, {
         ...editFormData,
-        price: Number(editFormData.price)
+        price: Number(editFormData.price),
+        images: imagesArray,
+        specs: specsObj
       });
       setProducts(prev => prev.map(p => p.id === editingProduct.id ? res.data : p));
       setEditingProduct(null);
@@ -439,7 +496,7 @@ const Admin = () => {
                     </div>
 
                     <div className="form-group">
-                      <label><ImageIcon size={18} /> Image URL</label>
+                      <label><ImageIcon size={18} /> Ảnh đại diện (Main Image URL)</label>
                       <input 
                         type="text" 
                         placeholder="https://images.unsplash.com/..." 
@@ -450,9 +507,44 @@ const Admin = () => {
                     </div>
 
                     <div className="form-group">
-                      <label><FileText size={18} /> Mô tả</label>
+                      <label><ImageIcon size={18} /> Ảnh bổ sung (Gallery URLs - Phân cách bằng dấu phẩy)</label>
                       <textarea 
-                        placeholder="Mô tả thông số kỹ thuật vật liệu..." 
+                        placeholder="url1, url2, url3..." 
+                        value={formData.images}
+                        onChange={(e) => setFormData({...formData, images: e.target.value})}
+                        rows="2"
+                      ></textarea>
+                      <p className="field-hint">Nhập các địa chỉ ảnh khác để làm bộ sưu tập chi tiết.</p>
+                    </div>
+
+                    <div className="form-group">
+                      <label><ClipboardList size={18} /> Thông số kỹ thuật</label>
+                      <div className="specs-builder">
+                        {formData.specs.map((spec, index) => (
+                          <div key={index} className="spec-input-row">
+                            <input 
+                              type="text" 
+                              placeholder="Tên thông số (VD: Độ dày)" 
+                              value={spec.key} 
+                              onChange={(e) => handleSpecChange(index, 'key', e.target.value)}
+                            />
+                            <input 
+                              type="text" 
+                              placeholder="Giá trị (VD: 10mm)" 
+                              value={spec.value} 
+                              onChange={(e) => handleSpecChange(index, 'value', e.target.value)}
+                            />
+                            <button type="button" onClick={() => removeSpecField(index)} className="remove-spec-btn"><X size={14}/></button>
+                          </div>
+                        ))}
+                        <button type="button" onClick={() => addSpecField()} className="add-spec-btn">+ Thêm thông số</button>
+                      </div>
+                    </div>
+
+                    <div className="form-group">
+                      <label><FileText size={18} /> Mô tả tổng quan</label>
+                      <textarea 
+                        placeholder="Mô tả chi tiết về vật liệu..." 
                         value={formData.description}
                         onChange={(e) => setFormData({...formData, description: e.target.value})}
                         required
@@ -772,7 +864,7 @@ const Admin = () => {
               </div>
 
               <div className="form-group">
-                <label><ImageIcon size={18} /> Image URL</label>
+                <label><ImageIcon size={18} /> Ảnh đại diện (Main Image URL)</label>
                 <input 
                   type="text" 
                   value={editFormData.image}
@@ -782,7 +874,41 @@ const Admin = () => {
               </div>
 
               <div className="form-group">
-                <label><FileText size={18} /> Mô tả</label>
+                <label><ImageIcon size={18} /> Ảnh bổ sung (Gallery URLs - Phân cách bằng dấu phẩy)</label>
+                <textarea 
+                  placeholder="url1, url2, url3..." 
+                  value={editFormData.images}
+                  onChange={(e) => setEditFormData({...editFormData, images: e.target.value})}
+                  rows="2"
+                ></textarea>
+              </div>
+
+              <div className="form-group">
+                <label><ClipboardList size={18} /> Thông số kỹ thuật</label>
+                <div className="specs-builder">
+                  {editFormData.specs.map((spec, index) => (
+                    <div key={index} className="spec-input-row">
+                      <input 
+                        type="text" 
+                        placeholder="Tên thông số" 
+                        value={spec.key} 
+                        onChange={(e) => handleSpecChange(index, 'key', e.target.value, true)}
+                      />
+                      <input 
+                        type="text" 
+                        placeholder="Giá trị" 
+                        value={spec.value} 
+                        onChange={(e) => handleSpecChange(index, 'value', e.target.value, true)}
+                      />
+                      <button type="button" onClick={() => removeSpecField(index, true)} className="remove-spec-btn"><X size={14}/></button>
+                    </div>
+                  ))}
+                  <button type="button" onClick={() => addSpecField(true)} className="add-spec-btn">+ Thêm thông số</button>
+                </div>
+              </div>
+
+              <div className="form-group">
+                <label><FileText size={18} /> Mô tả tổng quan</label>
                 <textarea 
                   value={editFormData.description}
                   onChange={(e) => setEditFormData({...editFormData, description: e.target.value})}

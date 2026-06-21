@@ -20,20 +20,24 @@ const ProductDetail = () => {
     }
   }, [product]);
 
+  const [mainImage, setMainImage] = useState('');
+
   useEffect(() => {
     const fetchProduct = async () => {
       try {
         const res = await API.get(`/products/${id}`);
-        setProduct({
+        const productData = {
           ...res.data,
-          // Fallback specs in case backend doesn't have them
           specs: res.data.specs || {
              "Weight": "50kg",
              "Dimensions": "Standard",
              "Certification": "ISO 9001",
              "Manufacturer": "FACADES Core"
-          }
-        });
+          },
+          images: res.data.images && res.data.images.length > 0 ? res.data.images : [res.data.image]
+        };
+        setProduct(productData);
+        setMainImage(productData.image);
       } catch (err) {
         console.error("Error fetching product", err);
       } finally {
@@ -47,7 +51,6 @@ const ProductDetail = () => {
   if (!product) return <div className="loader">Không tìm thấy sản phẩm. <Link to="/shop">Quay lại</Link></div>;
 
   const handleAddToCart = () => {
-    // Basic fix to add multiple sizes or quantities instantly to cart
     for (let i = 0; i < quantity; i++) {
         addToCart(product);
     }
@@ -64,11 +67,17 @@ const ProductDetail = () => {
 
       <div className="product-main glass">
         <div className="product-gallery">
-          <img src={product.image} alt={product.name} className="main-image" />
+          <img src={mainImage} alt={product.name} className="main-image" />
           <div className="thumbnail-strip">
-             <img src={product.image} alt="Thumb 1" className="active" />
-             <div className="thumb-placeholder">Image 2</div>
-             <div className="thumb-placeholder">Image 3</div>
+             {product.images.map((img, idx) => (
+                <img 
+                    key={idx} 
+                    src={img} 
+                    alt={`Thumb ${idx + 1}`} 
+                    className={mainImage === img ? 'active' : ''} 
+                    onClick={() => setMainImage(img)}
+                />
+             ))}
           </div>
         </div>
         
