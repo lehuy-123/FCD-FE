@@ -6,7 +6,7 @@ import './Cart.css';
 import { Link } from 'react-router-dom';
 
 const Cart = () => {
-  const { cart, removeFromCart, updateQuantity, clearCart } = useCart();
+  const { cart, removeFromCart, updateQuantity, clearCart, toggleSelection, toggleAll } = useCart();
   const [formData, setFormData] = useState({ name: '', phone: '', address: '', notes: '' });
   const [status, setStatus] = useState('');
   const [showQR, setShowQR] = useState(() => {
@@ -17,17 +17,19 @@ const Cart = () => {
     return saved ? JSON.parse(saved) : null;
   });
 
-  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const selectedItems = cart.filter(item => item.selected);
+  const total = selectedItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const isAllSelected = cart.length > 0 && cart.every(item => item.selected);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (cart.length === 0) return alert('Giỏ hàng đang trống!');
+    if (selectedItems.length === 0) return alert('Vui lòng chọn ít nhất một sản phẩm để thanh toán!');
     setStatus('Đang xử lý...');
     
     try {
       const res = await axios.post('http://localhost:5000/api/orders', {
         customer: formData,
-        items: cart,
+        items: selectedItems,
         total: total
       });
       const orderData = { id: res.data.orderId, total: total };
@@ -38,7 +40,8 @@ const Cart = () => {
       setShowQR(true);
       localStorage.setItem('facades_show_qr', 'true');
       
-      clearCart();
+      // Remove only selected items from cart
+      selectedItems.forEach(item => removeFromCart(item.id));
       setFormData({ name: '', phone: '', address: '', notes: '' });
     } catch (err) {
       console.error(err);
@@ -72,10 +75,27 @@ const Cart = () => {
       {cart.length > 0 && (
         <div className="cart-content">
           <div className="cart-items glass">
-            <h2>Chi tiết Đơn hàng</h2>
+            <div className="cart-items-header">
+              <h2>Chi tiết Đơn hàng</h2>
+              <label className="select-all">
+                <input 
+                  type="checkbox" 
+                  checked={isAllSelected} 
+                  onChange={(e) => toggleAll(e.target.checked)} 
+                />
+                <span>Chọn tất cả</span>
+              </label>
+            </div>
             <div className="items-list">
               {cart.map(item => (
-                <div key={item.id} className="cart-item">
+                <div key={item.id} className={`cart-item ${item.selected ? 'selected' : ''}`}>
+                  <div className="item-selection">
+                    <input 
+                      type="checkbox" 
+                      checked={item.selected || false} 
+                      onChange={() => toggleSelection(item.id)} 
+                    />
+                  </div>
                   <img src={item.image} alt={item.name} />
                   <div className="item-info">
                     <h3>{item.name}</h3>
@@ -97,7 +117,10 @@ const Cart = () => {
               ))}
             </div>
             <div className="cart-total">
-              <h3>Tổng cộng dự kiến</h3>
+              <div className="total-info">
+                <p>Đã chọn: <strong>{selectedItems.length}</strong> sản phẩm</p>
+                <h3>Tổng cộng dự kiến</h3>
+              </div>
               <span className="total-price">{total.toLocaleString()} VNĐ</span>
             </div>
           </div>

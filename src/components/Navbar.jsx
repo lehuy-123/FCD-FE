@@ -45,6 +45,7 @@ const Navbar = () => {
 
           <Link to="/cart" className="cart-btn" onClick={() => setMenuOpen(false)}>
             <ShoppingBag size={20} />
+            <span>Giỏ hàng</span>
             {totalItems > 0 && <span className="cart-count">{totalItems}</span>}
           </Link>
         </div>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import API from '../api/api';
 import { 
   PlusCircle, Package, Image as ImageIcon, Tag, DollarSign, FileText, 
   LayoutDashboard, ShoppingBag, Trash2, Edit, X, ClipboardList, CheckCircle, Clock, Truck,
@@ -81,22 +81,23 @@ const Admin = () => {
     );
   }
 
-  // Fetch products and orders
+  // Fetch products, orders, and projects
   const fetchData = async () => {
     setLoading(true);
     setErrorMsg('');
     try {
-      const prodRes = await axios.get('http://localhost:5000/api/products');
-      setProducts(prodRes.data);
+      // Use higher pageSize for admin management
+      const prodRes = await API.get('/products?pageSize=100');
+      setProducts(prodRes.data.products || []);
 
-      const orderRes = await axios.get('http://localhost:5000/api/orders');
-      setOrders(orderRes.data);
+      const orderRes = await API.get('/orders');
+      setOrders(orderRes.data || []);
 
-      const projectRes = await axios.get('http://localhost:5000/api/projects');
-      setProjects(projectRes.data);
+      const projectRes = await API.get('/projects?pageSize=100');
+      setProjects(projectRes.data.projects || []);
     } catch (err) {
       console.error('Error fetching dashboard data:', err);
-      setErrorMsg('Không thể tải dữ liệu từ máy chủ.');
+      setErrorMsg('Không thể tải dữ liệu từ máy chủ. Vui lòng kiểm tra quyền truy cập.');
     } finally {
       setLoading(false);
     }
@@ -118,7 +119,7 @@ const Admin = () => {
     e.preventDefault();
     setStatus('Đang thêm...');
     try {
-      const res = await axios.post('http://localhost:5000/api/products', {
+      const res = await API.post('/products', {
         ...formData,
         price: Number(formData.price)
       });
@@ -149,7 +150,7 @@ const Admin = () => {
     e.preventDefault();
     setStatus('Đang lưu thay đổi...');
     try {
-      const res = await axios.put(`http://localhost:5000/api/products/${editingProduct.id}`, {
+      const res = await API.put(`/products/${editingProduct.id}`, {
         ...editFormData,
         price: Number(editFormData.price)
       });
@@ -167,7 +168,7 @@ const Admin = () => {
   const handleDeleteProduct = async (id) => {
     if (!window.confirm('Bạn có chắc muốn xóa sản phẩm này không?')) return;
     try {
-      await axios.delete(`http://localhost:5000/api/products/${id}`);
+      await API.delete(`/products/${id}`);
       setProducts(prev => prev.filter(p => p.id !== id));
       setStatus('Xóa sản phẩm thành công.');
       setTimeout(() => setStatus(''), 3000);
@@ -180,7 +181,7 @@ const Admin = () => {
   // Update order status
   const handleUpdateOrderStatus = async (id, newStatus) => {
     try {
-      const res = await axios.put(`http://localhost:5000/api/orders/${id}/status`, { status: newStatus });
+      const res = await API.put(`/orders/${id}/status`, { status: newStatus });
       setOrders(prev => prev.map(o => o.id === id ? { ...o, status: res.data.status } : o));
     } catch (err) {
       console.error(err);
@@ -194,7 +195,7 @@ const Admin = () => {
     e.preventDefault();
     setStatus('Đang thêm dự án...');
     try {
-      const res = await axios.post('http://localhost:5000/api/projects', projectFormData);
+      const res = await API.post('/projects', projectFormData);
       setStatus('Thêm dự án thành công!');
       setProjectFormData({
         title: '', category: '', image: '', location: '', client: '', completion_date: '', description: ''
@@ -224,7 +225,7 @@ const Admin = () => {
     e.preventDefault();
     setStatus('Đang cập nhật dự án...');
     try {
-      const res = await axios.put(`http://localhost:5000/api/projects/${editingProject.id}`, editProjectFormData);
+      const res = await API.put(`/projects/${editingProject.id}`, editProjectFormData);
       setProjects(prev => prev.map(p => p.id === editingProject.id ? res.data : p));
       setEditingProject(null);
       setStatus('Cập nhật dự án thành công!');
@@ -238,7 +239,7 @@ const Admin = () => {
   const handleDeleteProject = async (id) => {
     if (!window.confirm('Bạn có chắc muốn xóa dự án này không?')) return;
     try {
-      await axios.delete(`http://localhost:5000/api/projects/${id}`);
+      await API.delete(`/projects/${id}`);
       setProjects(prev => prev.filter(p => p.id !== id));
       setStatus('Xóa dự án thành công.');
       setTimeout(() => setStatus(''), 3000);
@@ -251,7 +252,7 @@ const Admin = () => {
   const handleDeleteOrder = async (id) => {
     if (!window.confirm('Bạn có chắc muốn xóa bản ghi đơn hàng này không?')) return;
     try {
-      await axios.delete(`http://localhost:5000/api/orders/${id}`);
+      await API.delete(`/orders/${id}`);
       setOrders(prev => prev.filter(o => o.id !== id));
     } catch (err) {
       console.error(err);

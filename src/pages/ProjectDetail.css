@@ -3,6 +3,62 @@
   padding-bottom: 5rem;
 }
 
+/* Breadcrumbs Styling */
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.breadcrumbs a {
+  color: var(--text-muted);
+  transition: var(--transition);
+}
+
+.breadcrumbs a:hover {
+  color: var(--primary);
+}
+
+.breadcrumbs .current {
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+/* Back Button Styling */
+.back-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--accent);
+  color: var(--text-main);
+  padding: 0.75rem 1.25rem;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 2.5rem;
+  transition: var(--transition);
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  background: #e2e8f0;
+  transform: translateX(-5px);
+  color: var(--primary);
+}
+
+.back-btn svg {
+  transition: transform 0.3s ease;
+}
+
+.back-btn:hover svg {
+  transform: scale(1.1);
+}
+
 .project-hero {
   position: relative;
   width: 100%;
@@ -107,5 +163,35 @@
   
   .project-hero-overlay h1 {
     font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .project-detail-page {
+    padding-top: 6rem;
+  }
+
+  .project-hero {
+    height: 250px;
+  }
+
+  .project-hero-overlay {
+    padding: 1.5rem 1rem;
+  }
+
+  .project-hero-overlay h1 {
+    font-size: 1.75rem;
+  }
+
+  .project-detail-content {
+    padding: 1.5rem 1rem;
+  }
+
+  .project-description h2 {
+    font-size: 1.5rem;
+  }
+
+  .project-description p {
+    font-size: 1rem;
   }
 }

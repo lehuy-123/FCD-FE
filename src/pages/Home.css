@@ -253,62 +253,88 @@
 @media (max-width: 900px) {
   .about-snippet {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 3rem;
+    text-align: center;
   }
-}
-
-/* Tighter, cleaner layout for small mobile screens */
-@media (max-width: 480px) {
-  .stats-section {
-    padding: 2.5rem 0;
-    margin: 2rem 0;
-    background-attachment: scroll; /* avoid fixed background on mobile */
-  }
-
-  .stats-container {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    padding: 1rem 0;
-  }
-
-  .stat-box {
-    padding: 0.75rem 0;
-  }
-
-  .stat-box h2 {
+  
+  .about-text h2 {
     font-size: 2rem;
-    margin-bottom: 0.25rem;
   }
-
-  .stat-box p {
-    font-size: 0.95rem;
-    margin: 0;
-    opacity: 0.95;
-  }
-
-  .stat-box h2 svg {
-    width: 36px;
-    height: 36px;
+  
+  .expertise-list li {
+    justify-content: center;
   }
 }
 
 @media (max-width: 768px) {
+  .hero {
+    height: 70vh;
+  }
+
   .hero-content h1 {
     font-size: 2.5rem;
+  }
+  
+  .hero-content p {
+    font-size: 1.1rem;
+    max-width: 100%;
+  }
+
+  .features {
+    margin-top: -2rem;
+    padding-bottom: 3rem;
+  }
+
+  .cta-content h2 {
+    font-size: 2rem;
   }
 }
 
 @media (max-width: 480px) {
   .hero {
-    height: 60vh;
-    padding-top: 3rem;
+    height: auto;
+    padding: 8rem 0 4rem;
   }
 
   .hero-content h1 {
-    font-size: 1.8rem;
+    font-size: 2rem;
   }
 
   .hero-content p {
     font-size: 1rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .primary-btn, .secondary-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .features {
+    grid-template-columns: 1fr;
+    margin-top: 2rem;
+  }
+
+  .stats-section {
+    padding: 3rem 0;
+    margin: 2rem 0;
+    background-attachment: scroll;
+  }
+
+  .stats-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .stat-box h2 {
+    font-size: 2.5rem;
+  }
+
+  .cta-content h2 {
+    font-size: 1.75rem;
   }
 }
