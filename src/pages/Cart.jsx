@@ -27,7 +27,7 @@ const Cart = () => {
     setStatus('Đang xử lý...');
     
     try {
-      const res = await axios.post('http://localhost:5000/api/orders', {
+      const res = await API.post('/orders', {
         customer: formData,
         items: selectedItems,
         total: total

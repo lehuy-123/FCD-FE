@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft, MapPin, Calendar, User, ChevronRight } from 'lucide-react';
-import axios from 'axios';
+import API from '../api/api';
 import './ProjectDetail.css';
 
 const ProjectDetail = () => {
@@ -13,7 +13,7 @@ const ProjectDetail = () => {
   useEffect(() => {
     const fetchProject = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/projects/${id}`);
+        const res = await API.get(`/projects/${id}`);
         setProject(res.data);
         if (res.data) {
           document.title = `${res.data.title} - FACADES Projects`;

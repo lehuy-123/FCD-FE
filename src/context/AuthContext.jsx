@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }) => {
     setLoading(true);
     setError(null);
     try {
-      const res = await axios.post('http://localhost:5000/api/users/login', { email, password });
+      const res = await axios.post('https://fcd-be.onrender.com/api/users/login', { email, password });
       setUser(res.data);
       return { success: true };
     } catch (err) {
@@ -53,7 +53,7 @@ export const AuthProvider = ({ children }) => {
     setLoading(true);
     setError(null);
     try {
-      const res = await axios.post('http://localhost:5000/api/users/register', { username, email, password });
+      const res = await axios.post('https://fcd-be.onrender.com/api/users/register', { username, email, password });
       setUser(res.data);
       return { success: true };
     } catch (err) {
