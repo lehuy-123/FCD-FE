@@ -1,13 +1,33 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowRight, Drill, Hammer, Shovel, Building, Users, ShieldCheck, ChevronRight } from 'lucide-react';
 import './Home.css';
 import { Link } from 'react-router-dom';
 
+const bannerImages = [
+  'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2000&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2000&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1541888052163-f932e673baea?q=80&w=2000&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2000&auto=format&fit=crop'
+];
+
 const Home = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % bannerImages.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <div className="home">
       {/* Hero Section */}
       <section className="hero">
+        <div 
+          className="hero-bg-container" 
+          style={{ backgroundImage: `url(${bannerImages[currentSlide]})` }}
+        ></div>
         <div className="hero-overlay"></div>
         <div className="container hero-content fade-in">
           <h1>Xây dựng <span className="highlight">Tương lai</span> với Kính và Nhôm</h1>
