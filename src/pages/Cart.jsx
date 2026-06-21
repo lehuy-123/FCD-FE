@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import API from '../api/api';
 import { useCart } from '../context/CartContext';
 import { Trash2, ShoppingBag, User, Phone, MapPin, FileText, CheckCircle2, ShieldCheck } from 'lucide-react';
 import './Cart.css';

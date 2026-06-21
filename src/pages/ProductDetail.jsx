@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { useParams, useNavigate, Link } from 'react-router-dom';
+import API from '../api/api';
 import { ArrowLeft, ShoppingCart, ShieldCheck, Truck, ChevronRight, Check } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import './ProductDetail.css';
